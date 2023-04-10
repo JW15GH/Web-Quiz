@@ -1,0 +1,28 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+<div class="container" style="background-color: white;">
+  <h1 style="background-color: white;">Accommodation Sustainability Quiz!</h1>
+  <hr>
+  <form method="POST" action="{% url 'answer' %}">
+    {% csrf_token %}
+    {% for question in questions %}
+    <h3>{{ question.question_text }}</h3>
+    <input type="hidden" name="question_id_{{ question.id }}" value="{{ question.id }}">
+    <div>
+      <input type="radio" id="option1_{{ question.id }}" name="answer_{{ question.id }}" value="1">
+      <label for="option1_{{ question.id }}">{{ question.answer_a }}</label>
+    </div>
+    <div>
+      <input type="radio" id="option2_{{ question.id }}" name="answer_{{ question.id }}" value="2">
+      <label for="option2_{{ question.id }}">{{ question.answer_b }}</label>
+    </div>
+    <div>
+      <input type="radio" id="option3_{{ question.id }}" name="answer_{{ question.id }}" value="3">
+      <label for="option3_{{ question.id }}">{{ question.answer_c }}</label>
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}

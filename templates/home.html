@@ -1,0 +1,48 @@
+{% extends 'navbar.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        {% if user.is_authenticated %}
+          <div class="card">
+            <div class="card-body">
+              Hi {{ user.username }}!
+		<br> Please navigate to the about page where you can learn more about the app!
+              <p><a href="{% url 'logout' %}" class="button">Log Out</a></p>
+            </div>
+          </div>
+          
+          <br>
+          <div class="card">
+            <div class="card-body">
+              <br><h2><b>How do I play?</b></h2>
+              <p>It's simple! Just sign up and explore, scan our QR Codes around campus to gain access to the quizzes and articles! Start reading articles and taking quizzes to earn points. You will be able to see your progress on the leaderboard and compete against your friends to see who has the highest level of knowledge about sustainability on campus!</p>
+              <h2><b>How do I earn points?</b></h2>
+              <p>For every article you read, you will earn 10 points. For every quiz you take, you can earn 10 points for each question you get correct! However be careful and don't rush as you only get awarded points once per article/quiz you take</p>
+            </div>
+          </div>
+          <br>
+          <div class="card">
+            <div class="card-body">
+              <br> A link to our privacy policy can be found <a href="{% url 'priv_pol' %}">here.</a>
+            </div>
+          </div>
+        {% else %}
+          <div class="card">
+            <div class="card-body">
+              <h4>Welcome to our web app!</h4>
+		<p><br> Please login or create an account below<p>
+            </div>
+            <div class="card-footer">
+              <a href="{% url 'login' %}" class="button primary">Log In</a>
+              <a href="{% url 'signup' %}" class="button secondary">Sign Up</a>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
